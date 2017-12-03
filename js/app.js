@@ -150,7 +150,16 @@ function initMap() {
 }
 
 const ViewModel = function() {
+	const self = this;
+	this.menuHidden = ko.observable(false);
 	
+	this.toggleMenu = function() {
+		if (self.menuHidden() === true) {
+			self.menuHidden(false);
+		} else {
+			self.menuHidden(true);
+		}
+	};
 }
 
 ko.applyBindings(new ViewModel());
