@@ -22,6 +22,15 @@ body {
 	border: 1px solid #aaa;
 }
 
+.menu-icon {
+	background-color: #ececec;
+	position: absolute;
+	top: -1px;
+	right: -53px;
+	padding: 0 5px;
+	border: 1px solid #aaa;
+}
+
 #map {
 	height: 100%;
 }
