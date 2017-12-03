@@ -1,3 +1,8 @@
+let map;
+
+// Array to store all the place markers
+let markers = [];
+
 function initMap() {
 	// Styles array for custom map
 	const styles = [
@@ -139,34 +144,15 @@ function initMap() {
     }];
 
 	// Constructor creates a new map
-	const map = new google.maps.Map(document.getElementById('map'), {
+	map = new google.maps.Map(document.getElementById('map'), {
 		center: {lat: 51.96403089999999, lng: 1.3512195}, 
 		zoom: 14,
 		styles: styles,
 		mapTypeControl: false
 	});
 	
-	// Array to store all the place markers
-	let markers = [];
-	
-	// Search request for restaurants within 2000 metres of Felixstowe centre
-	function getMarkers() {
-		const felixstowe = new google.maps.LatLng({lat: 51.961726, lng: 1.351255});
-		const request = {
-					location: felixstowe,
-					radius: '2000',
-					type: ['restaurant'],
-					key: 'AIzaSyChGiQPjP2sWVf0rZpvoNKarXBNI5VzRpA'
-					};
-		
-		service = new google.maps.places.PlacesService(map);
-		service.nearbySearch(request, createMarkers);
-	}
-	
-	getMarkers();
-	
 	// Creates markers from results of the nearbysearch
-	function createMarkers(results, status, pagination) {
+	const createMarkers = function(results, status, pagination) {
 		if (status === google.maps.places.PlacesServiceStatus.OK) {
 			
 			// Increases the results to a maximum of 60
@@ -197,6 +183,20 @@ function initMap() {
 			}
 		}
 	}
+	
+	// Search request for restaurants within 2000 metres of Felixstowe centre
+	const getMarkers = function() {
+		const felixstowe = new google.maps.LatLng({lat: 51.961726, lng: 1.351255});
+		const request = {
+					location: felixstowe,
+					radius: '2000',
+					type: ['restaurant'],
+					key: 'AIzaSyChGiQPjP2sWVf0rZpvoNKarXBNI5VzRpA'
+					};
+		
+		service = new google.maps.places.PlacesService(map);
+		service.nearbySearch(request, createMarkers);
+	}()
 }
 
 
@@ -214,7 +214,7 @@ const ViewModel = function() {
 		} else {
 			self.menuHidden(true);
 		}
-	};
+	}
 }
 
 ko.applyBindings(new ViewModel());

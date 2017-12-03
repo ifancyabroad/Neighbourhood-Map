@@ -14,6 +14,9 @@
 <body>
 	<div class="container">
 		<div data-bind="style: { transform: menuHidden() ? 'translatex(-300px)' : 'translatex(0px)' }" id="menu">
+			<ul data-bind="foreach: markers">
+				<li data-bind="text: title"></li>
+			</ul>
 			<i data-bind="click: toggleMenu" class="fa fa-bars fa-3x menu-icon" aria-hidden="true"></i>
 		</div>
 		<div id="map">
