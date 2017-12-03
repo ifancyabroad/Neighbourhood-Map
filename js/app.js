@@ -148,3 +148,9 @@ function initMap() {
 		mapTypeControl: false
 	});
 }
+
+const ViewModel = function() {
+	
+}
+
+ko.applyBindings(new ViewModel());
