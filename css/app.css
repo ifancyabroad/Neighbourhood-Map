@@ -12,24 +12,25 @@ body {
 }
 
 #menu {
-	background-color: #ececec;
+	background-color: lightgrey;
 	z-index: 1;
 	position: fixed;
 	float: left;
 	height: 100%;
 	width: 300px;
-	opacity: 0.7;
+	opacity: 0.9;
 	border: 1px solid #aaa;
 	transition: transform, 1s;
 }
 
 .menu-icon {
-	background-color: #ececec;
+	background-color: inherit;
 	position: absolute;
 	top: -1px;
-	right: -53px;
+	right: -52px;
 	padding: 0 5px;
-	border: 1px solid #aaa;
+	border: inherit;
+	border-left: none;
 }
 
 .menu-info {
@@ -46,6 +47,11 @@ body {
 
 .places-list li {
 	margin: 10px 0;
+}
+
+.places-list li:hover {
+	cursor: pointer;
+	color: white;
 }
 
 #map {

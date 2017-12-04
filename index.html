@@ -18,7 +18,7 @@
 				<h3>Felixstowe Restaurants</h3>
 				<input type="search" placeholder="Search..."></input>
 				<ul data-bind="foreach: markers" class="places-list">
-					<li data-bind="text: title"></li>
+					<li data-bind="text: title, click: populateInfoWindow"></li>
 				</ul>
 			</div>
 			<i data-bind="click: toggleMenu" class="fa fa-bars fa-3x menu-icon" aria-hidden="true"></i>

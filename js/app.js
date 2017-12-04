@@ -151,8 +151,8 @@ function initMap() {
 		mapTypeControl: false
 	});
 	
-	// Create variable for info windows
-	const largeInfowindow = new google.maps.InfoWindow();
+	// Create a GLOBAL variable for info windows
+	infowindow = new google.maps.InfoWindow();
 	
 	// Creates markers from results of the nearbysearch
 	const createMarkers = function(results, status, pagination) {
@@ -183,7 +183,7 @@ function initMap() {
 
 				// Create an onclick event to open the large infowindow at each marker.
 				marker.addListener('click', function() {
-					populateInfoWindow(this, largeInfowindow);
+					populateInfoWindow(this);
 				});
 			}
 		}
@@ -206,7 +206,7 @@ function initMap() {
 
 // Function to populate the infowindow when the marker is clicked. Only one
 // infowindow can be opened at a time
-const populateInfoWindow = function(marker, infowindow) {
+const populateInfoWindow = function(marker) {
 	
 	// Check to make sure the infowindow is not already opened on this marker.
 	if (infowindow.marker != marker) {
