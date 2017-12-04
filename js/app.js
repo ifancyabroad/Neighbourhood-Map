@@ -167,11 +167,13 @@ function initMap() {
 			for (let i = 0; i < results.length; i++) {
 				let position = results[i].geometry.location;
 				let title = results[i].name;
+				let address = results[i].vicinity;
 				
 				let marker = new google.maps.Marker({
 					position: position,
 					map: map,
 					title: title,
+					address: address,
 					animation: google.maps.Animation.DROP,
 					id: i
 				})
@@ -211,7 +213,9 @@ const populateInfoWindow = function(marker, infowindow) {
 		
 		// Populate the info window
 		infowindow.marker = marker;		
-		infowindow.setContent('<div>' + marker.title + '</div>');
+		infowindow.setContent(
+		`<h4>${marker.title}</h4>
+		<p>${marker.address}</p>`);
 		infowindow.open(map, marker);
 		
 		// Make sure the marker property is cleared if the infowindow is closed.
