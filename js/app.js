@@ -1,7 +1,7 @@
 let map;
 
 // Array to store all the place markers
-let markers = [];
+let markers = ko.observableArray([]);
 
 function initMap() {
 	// Styles array for custom map

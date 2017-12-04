@@ -32,6 +32,22 @@ body {
 	border: 1px solid #aaa;
 }
 
+.menu-info {
+	height: 100%;
+	padding-left: 40px;
+}
+
+.places-list {
+	list-style-type: none;
+	height: 80%;
+	overflow: auto;
+	padding: 0;
+}
+
+.places-list li {
+	margin: 10px 0;
+}
+
 #map {
 	height: 100%;
 }
