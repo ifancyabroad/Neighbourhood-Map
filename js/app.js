@@ -157,11 +157,13 @@ function initMap() {
 	// Creates markers from results of the nearbysearch
 	const createMarkers = function(data) {
 		let results = data.response.venues;
+		
 		// Loop through results and create marker for each location
 		for (let i = 0; i < results.length; i++) {
 			let position = {lat: results[i].location.lat, lng: results[i].location.lng};
 			let title = results[i].name;
 			let address = results[i].location.formattedAddress;
+			let id = results[i].id;
 			
 			let marker = new google.maps.Marker({
 				position: position,
@@ -169,9 +171,9 @@ function initMap() {
 				title: title,
 				address: address,
 				animation: google.maps.Animation.DROP,
-				id: i
+				id: id,
 			})
-			
+
 			// Push the marker to our array of markers.
 			markers.push(marker);
 
@@ -182,7 +184,7 @@ function initMap() {
 		}
 	}
 	
-	// Search request for restaurants within 2000 metres of Felixstowe centre
+	// Search request to foursquare API for food venues within 1000 metres of Felixstowe centre
 	const getMarkers = function() {
 		fetch(`https://api.foursquare.com/v2/venues/search?v=20170801&near=felixstowe&radius=1000&limit=50&categoryId=4d4b7105d754a06374d81259&client_id=TN0JTVIT305N1K511XICDKXC5FEIGGX50SVSUUH0UM3ECCKK&client_secret=FUHNDVNZHHHHDUPFYCQ43GQEIOQUG2QBGENDB1L2QRKD1UET`)
 		.then(response => response.json())
@@ -197,12 +199,26 @@ const populateInfoWindow = function(marker) {
 	// Check to make sure the infowindow is not already opened on this marker.
 	if (infowindow.marker != marker) {
 		
-		// Populate the info window
-		infowindow.marker = marker;		
-		infowindow.setContent(
-		`<h4>${marker.title}</h4>
-		<p>${marker.address}</p>`);
-		infowindow.open(map, marker);
+		// Fetch request to find image of the venue
+		fetch(`https://api.foursquare.com/v2/venues/${marker.id}/photos?v=20170801&l&limit=1&client_id=TN0JTVIT305N1K511XICDKXC5FEIGGX50SVSUUH0UM3ECCKK&client_secret=FUHNDVNZHHHHDUPFYCQ43GQEIOQUG2QBGENDB1L2QRKD1UET`)
+		.then(response => response.json())
+		.then(function(data) {
+			
+			// If there is no image, display an error message
+			if (data.response.photos.items[0] && data.response.photos.items[0]) {
+				marker.image = `<img src="${data.response.photos.items[0].prefix}300x300${data.response.photos.items[0].suffix}">`;
+			} else {
+				marker.image = `<p>Sorry no photos available for this venue</p>`;
+			}
+			
+			// Populate the info window
+			infowindow.marker = marker;		
+			infowindow.setContent(
+			`<h4>${marker.title}</h4>
+			<p>${marker.address}</p>
+			${marker.image}`);
+			infowindow.open(map, marker);
+		})
 		
 		// Make sure the marker property is cleared if the infowindow is closed.
 		infowindow.addListener('closeclick', function() {
