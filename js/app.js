@@ -146,7 +146,7 @@ function initMap() {
 	// Constructor creates a new map
 	map = new google.maps.Map(document.getElementById('map'), {
 		center: {lat: 51.96403089999999, lng: 1.3512195}, 
-		zoom: 14,
+		zoom: 15,
 		styles: styles,
 		mapTypeControl: false
 	});
@@ -155,52 +155,38 @@ function initMap() {
 	infowindow = new google.maps.InfoWindow();
 	
 	// Creates markers from results of the nearbysearch
-	const createMarkers = function(results, status, pagination) {
-		if (status === google.maps.places.PlacesServiceStatus.OK) {
+	const createMarkers = function(data) {
+		let results = data.response.venues;
+		// Loop through results and create marker for each location
+		for (let i = 0; i < results.length; i++) {
+			let position = {lat: results[i].location.lat, lng: results[i].location.lng};
+			let title = results[i].name;
+			let address = results[i].location.formattedAddress;
 			
-			// Increases the results to a maximum of 60
-			/*if (pagination.hasNextPage) {
-				pagination.nextPage();
-			}*/
+			let marker = new google.maps.Marker({
+				position: position,
+				map: map,
+				title: title,
+				address: address,
+				animation: google.maps.Animation.DROP,
+				id: i
+			})
 			
-			// Loop through results and create marker for each location
-			for (let i = 0; i < results.length; i++) {
-				let position = results[i].geometry.location;
-				let title = results[i].name;
-				let address = results[i].vicinity;
-				
-				let marker = new google.maps.Marker({
-					position: position,
-					map: map,
-					title: title,
-					address: address,
-					animation: google.maps.Animation.DROP,
-					id: i
-				})
-				
-				// Push the marker to our array of markers.
-				markers.push(marker);
+			// Push the marker to our array of markers.
+			markers.push(marker);
 
-				// Create an onclick event to open the large infowindow at each marker.
-				marker.addListener('click', function() {
-					populateInfoWindow(this);
-				});
-			}
+			// Create an onclick event to open the large infowindow at each marker.
+			marker.addListener('click', function() {
+				populateInfoWindow(this);
+			});
 		}
 	}
 	
 	// Search request for restaurants within 2000 metres of Felixstowe centre
 	const getMarkers = function() {
-		const felixstowe = new google.maps.LatLng({lat: 51.961726, lng: 1.351255});
-		const request = {
-					location: felixstowe,
-					radius: '2000',
-					type: ['restaurant'],
-					key: 'AIzaSyChGiQPjP2sWVf0rZpvoNKarXBNI5VzRpA'
-					};
-		
-		service = new google.maps.places.PlacesService(map);
-		service.nearbySearch(request, createMarkers);
+		fetch(`https://api.foursquare.com/v2/venues/search?v=20170801&near=felixstowe&radius=1000&limit=50&categoryId=4d4b7105d754a06374d81259&client_id=TN0JTVIT305N1K511XICDKXC5FEIGGX50SVSUUH0UM3ECCKK&client_secret=FUHNDVNZHHHHDUPFYCQ43GQEIOQUG2QBGENDB1L2QRKD1UET`)
+		.then(response => response.json())
+		.then(createMarkers)
 	}()
 }
 
