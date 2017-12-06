@@ -179,7 +179,7 @@ function initMap() {
 
 			// Create an onclick event to open the large infowindow at each marker.
 			marker.addListener('click', function() {
-				populateInfoWindow(this);
+				selectMarker(this);
 			});
 		}
 	}
@@ -192,12 +192,26 @@ function initMap() {
 	}()
 }
 
+// Function to highlight the currently selected marker
+const toggleBounce = function(currentMarker) {
+	
+	// Unhighlight all other markers
+	for (let marker of markers()) {
+		marker.setAnimation(google.maps.Animation.null);
+	}
+	
+	currentMarker.setAnimation(google.maps.Animation.BOUNCE);
+}	
+
 // Function to populate the infowindow when the marker is clicked. Only one
 // infowindow can be opened at a time
-const populateInfoWindow = function(marker) {
+const selectMarker = function(marker) {
 	
 	// Check to make sure the infowindow is not already opened on this marker.
 	if (infowindow.marker != marker) {
+		
+		// Highlight selected marker
+		toggleBounce(marker);
 		
 		// Fetch request to find image of the venue
 		fetch(`https://api.foursquare.com/v2/venues/${marker.id}/photos?v=20170801&l&limit=1&client_id=TN0JTVIT305N1K511XICDKXC5FEIGGX50SVSUUH0UM3ECCKK&client_secret=FUHNDVNZHHHHDUPFYCQ43GQEIOQUG2QBGENDB1L2QRKD1UET`)
@@ -222,6 +236,7 @@ const populateInfoWindow = function(marker) {
 		
 		// Make sure the marker property is cleared if the infowindow is closed.
 		infowindow.addListener('closeclick', function() {
+			marker.setAnimation(google.maps.Animation.null);
 			infowindow.marker = null;
 		});
 	}
