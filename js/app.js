@@ -163,15 +163,17 @@ function initMap() {
 			let position = {lat: results[i].location.lat, lng: results[i].location.lng};
 			let title = results[i].name;
 			let address = results[i].location.formattedAddress;
-			let id = results[i].id;
+			let id = results[i].id;			
+			let icon = getMarkerIcon('c56565');
 			
 			let marker = new google.maps.Marker({
 				position: position,
 				map: map,
 				title: title,
 				address: address,
+				icon: icon,
 				animation: google.maps.Animation.DROP,
-				id: id,
+				id: id
 			})
 
 			// Push the marker to our array of markers.
@@ -192,14 +194,28 @@ function initMap() {
 	}()
 }
 
+// Function accepts a color in hex format and generates a custom marker of that colour
+const getMarkerIcon = function(colour) {
+	let icon = {
+		url: `http://chart.googleapis.com/chart?chst=d_map_spin&chld=1.15|0|${colour}|40|_|%E2%80%A2`,
+		size: new google.maps.Size(21, 34),
+		origin: new google.maps.Point(0, 0),
+		anchor: new google.maps.Point(10, 34),
+		scaledSize: new google.maps.Size(21, 34)
+	};
+	return icon;
+}
+
 // Function to highlight the currently selected marker
-const toggleBounce = function(currentMarker) {
+const highlightMarker = function(currentMarker) {
 	
 	// Unhighlight all other markers
 	for (let marker of markers()) {
+		marker.icon = getMarkerIcon('c56565');
 		marker.setAnimation(google.maps.Animation.null);
 	}
 	
+	currentMarker.icon = getMarkerIcon('e8e686');
 	currentMarker.setAnimation(google.maps.Animation.BOUNCE);
 }	
 
@@ -211,7 +227,7 @@ const selectMarker = function(marker) {
 	if (infowindow.marker != marker) {
 		
 		// Highlight selected marker
-		toggleBounce(marker);
+		highlightMarker(marker);
 		
 		// Fetch request to find image of the venue
 		fetch(`https://api.foursquare.com/v2/venues/${marker.id}/photos?v=20170801&l&limit=1&client_id=TN0JTVIT305N1K511XICDKXC5FEIGGX50SVSUUH0UM3ECCKK&client_secret=FUHNDVNZHHHHDUPFYCQ43GQEIOQUG2QBGENDB1L2QRKD1UET`)
@@ -236,6 +252,7 @@ const selectMarker = function(marker) {
 		
 		// Make sure the marker property is cleared if the infowindow is closed.
 		infowindow.addListener('closeclick', function() {
+			marker.icon = getMarkerIcon('c56565');
 			marker.setAnimation(google.maps.Animation.null);
 			infowindow.marker = null;
 		});
