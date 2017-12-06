@@ -12,25 +12,32 @@ body {
 }
 
 #menu {
-	background-color: lightgrey;
+	background-color: #000;
+	color: #cdcdcd;
 	z-index: 1;
 	position: fixed;
 	float: left;
 	height: 100%;
 	width: 300px;
 	opacity: 0.9;
-	border: 1px solid #aaa;
+	border: 1px solid #5e8792;
+	border-left: none;
 	transition: transform, 1s;
 }
 
 .menu-icon {
 	background-color: inherit;
+	color: #5e8792;
 	position: absolute;
 	top: -1px;
 	right: -52px;
 	padding: 0 5px;
 	border: inherit;
 	border-left: none;
+}
+
+.menu-icon:hover {
+	cursor: pointer;
 }
 
 .menu-info {
