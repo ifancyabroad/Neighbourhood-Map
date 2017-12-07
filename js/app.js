@@ -276,11 +276,22 @@ const ViewModel = function() {
 		}
 	}
 	
+	// Tracks the input field in a Knockout observable
 	this.searchInput = ko.observable();
 	
 	// Update marker list when search input is used
 	this.updateMarkers = ko.computed(function() {
 		console.log(self.searchInput());
+		let re = new RegExp(self.searchInput());
+		for (let marker of markers()) {
+			if ((marker.title.match(re)) || (!(self.searchInput()))) {
+				marker.display(true);
+				marker.setMap(map);
+			} else {
+				marker.display(false);
+				marker.setMap(null);
+			} 
+		}
 	});
 	
 }
