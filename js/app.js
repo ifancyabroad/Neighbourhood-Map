@@ -173,7 +173,8 @@ function initMap() {
 				address: address,
 				icon: icon,
 				animation: google.maps.Animation.DROP,
-				id: id
+				id: id,
+				display: ko.observable(true)
 			})
 
 			// Push the marker to our array of markers.
@@ -238,7 +239,7 @@ const selectMarker = function(marker) {
 			if (data.response.photos.items[0] && data.response.photos.items[0]) {
 				marker.image = `<img src="${data.response.photos.items[0].prefix}300x300${data.response.photos.items[0].suffix}">`;
 			} else {
-				marker.image = `<p>Sorry no photos available for this venue</p>`;
+				marker.image = `<p><em>Sorry no photos available for this venue</em></p>`;
 			}
 			
 			// Populate the info window
