@@ -299,6 +299,11 @@ const ViewModel = function() {
 					marker.setMap(null);
 				}
 			}
+		} else {
+			for (let marker of markers()) {
+				marker.display(true);
+				marker.setMap(map);
+			}
 		}
 	});
 	
