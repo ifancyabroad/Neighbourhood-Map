@@ -16,7 +16,7 @@
 		<div data-bind="style: { transform: menuHidden() ? 'translatex(-300px)' : 'translatex(0px)' }" id="menu">
 			<div class="menu-info">
 				<h3>Felixstowe Restaurants</h3>
-				<input type="search" placeholder="Search..."></input>
+				<input data-bind="textInput: searchInput" type="search" placeholder="Search..."></input>
 				<ul data-bind="foreach: markers" class="places-list">
 					<li data-bind="text: title, click: selectMarker, style: { display: display() ? 'block' : 'none' }"></li>
 				</ul>

@@ -275,6 +275,14 @@ const ViewModel = function() {
 			self.menuHidden(true);
 		}
 	}
+	
+	this.searchInput = ko.observable();
+	
+	// Update marker list when search input is used
+	this.updateMarkers = ko.computed(function() {
+		console.log(self.searchInput());
+	});
+	
 }
 
 ko.applyBindings(new ViewModel());
