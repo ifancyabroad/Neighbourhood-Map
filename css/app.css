@@ -30,7 +30,7 @@ body {
 	color: #5e8792;
 	position: absolute;
 	top: -1px;
-	right: -52px;
+	right: -38px;
 	padding: 0 5px;
 	border: inherit;
 	border-left: none;
@@ -38,6 +38,15 @@ body {
 
 .menu-icon:hover {
 	cursor: pointer;
+}
+
+h2 {
+	font-family: 'Righteous', cursive;
+	color: #5e8792;
+}
+
+input {
+	padding: 5px;
 }
 
 .menu-info {

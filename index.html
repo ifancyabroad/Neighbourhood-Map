@@ -7,6 +7,8 @@
 	<title>Neighborhood Map</title>
 	<!--Link to CSS-->
 	<link rel="stylesheet" href="css/app.css">
+	<!--Link to Google Fonts-->
+	<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
 	<!--Link to Font Awesome icon library-->
 	<script src="https://use.fontawesome.com/6728ffe1f0.js"></script>
 </head>
@@ -15,13 +17,13 @@
 	<div class="container">
 		<div data-bind="style: { transform: menuHidden() ? 'translatex(-300px)' : 'translatex(0px)' }" id="menu">
 			<div class="menu-info">
-				<h3>Felixstowe Restaurants</h3>
+				<h2>Felixstowe Food</h2>
 				<input data-bind="textInput: searchInput" type="search" placeholder="Search..."></input>
 				<ul data-bind="foreach: markers" class="places-list">
 					<li data-bind="text: title, click: selectMarker, style: { display: display() ? 'block' : 'none' }"></li>
 				</ul>
 			</div>
-			<i data-bind="click: toggleMenu" class="fa fa-bars fa-3x menu-icon" aria-hidden="true"></i>
+			<i data-bind="click: toggleMenu" class="fa fa-bars fa-2x menu-icon" aria-hidden="true"></i>
 		</div>
 		<div id="map">
 		</div>

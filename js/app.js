@@ -281,16 +281,24 @@ const ViewModel = function() {
 	
 	// Update marker list when search input is used
 	this.updateMarkers = ko.computed(function() {
-		console.log(self.searchInput());
-		let re = new RegExp(self.searchInput());
-		for (let marker of markers()) {
-			if ((marker.title.match(re)) || (!(self.searchInput()))) {
-				marker.display(true);
-				marker.setMap(map);
-			} else {
-				marker.display(false);
-				marker.setMap(null);
-			} 
+		
+		// Only upate if search field is not empty
+		if (self.searchInput()) {
+			
+			// Set search input to a regular expression and all lower case
+			let re = new RegExp(self.searchInput().toLowerCase());
+			
+			// If the marker title matches the expression then show it on the list and map
+			// Else hide it on the list and map
+			for (let marker of markers()) {
+				if (marker.title.toLowerCase().match(re)) {
+					marker.display(true);
+					marker.setMap(map);
+				} else {
+					marker.display(false);
+					marker.setMap(null);
+				}
+			}
 		}
 	});
 	
