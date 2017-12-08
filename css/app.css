@@ -12,7 +12,7 @@ body {
 }
 
 .menu {
-	color: #cdcdcd;
+	color: #6e6967;
 	z-index: 1;
 	position: fixed;
 	float: left;
@@ -22,13 +22,13 @@ body {
 }
 
 .menu-icon {
-	background-color: #0e1b20;
-	color: #90b6c0;
+	background-color: #d3cdcb;
+	color: #6e6967;
 	position: absolute;
 	top: 0;
 	right: -37px;
 	padding: 0 5px;
-	border: 2px solid #5e8792;
+	border: 2px solid #938b89;
 	border-left: none;
 }
 
@@ -37,16 +37,18 @@ body {
 }
 
 .titles {
-	border: 2px solid #5e8792;
+	border: 2px solid #938b89;
 	border-left: none;
-	background-color: #0e1b20;
+	background-color: #d3cdcb;
 	padding: 20px 0 20px 40px;
 }
 
 h2 {
 	font-family: 'Righteous', cursive;
-	color: #90b6c0;
+	color: #3e3b3b;
 	margin: 5px 0;
+	width: 80%;
+	border-bottom: 1px solid #3e3b3b;
 }
 
 span {
@@ -60,7 +62,7 @@ input {
 }
 
 .places-list {
-	background-color: rgba(29, 37, 41, 0.95);
+	background-color: #ececec;
 	list-style-type: none;
 	height: 75%;
 	overflow: auto;
