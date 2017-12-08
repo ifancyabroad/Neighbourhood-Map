@@ -163,7 +163,7 @@ function initMap() {
 		for (let i = 0; i < results.length; i++) {
 			let position = {lat: results[i].location.lat, lng: results[i].location.lng};
 			let title = results[i].name;
-			let address = results[i].location.formattedAddress;
+			let address = results[i].location.formattedAddress.join(', ');
 			let id = results[i].id;			
 			let icon = getMarkerIcon('c56565');
 			

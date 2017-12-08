@@ -62,7 +62,7 @@ input {
 }
 
 .places-list {
-	background-color: #ececec;
+	background-color: #e2e2e2;
 	list-style-type: none;
 	height: 75%;
 	overflow: auto;
