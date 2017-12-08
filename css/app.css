@@ -11,28 +11,24 @@ body {
 	position: relative;
 }
 
-#menu {
-	background-color: #000;
+.menu {
 	color: #cdcdcd;
 	z-index: 1;
 	position: fixed;
 	float: left;
 	height: 100%;
 	width: 300px;
-	opacity: 0.9;
-	border: 1px solid #5e8792;
-	border-left: none;
 	transition: transform, 1s;
 }
 
 .menu-icon {
-	background-color: inherit;
-	color: #5e8792;
+	background-color: #0e1b20;
+	color: #90b6c0;
 	position: absolute;
-	top: -1px;
-	right: -38px;
+	top: 0;
+	right: -37px;
 	padding: 0 5px;
-	border: inherit;
+	border: 2px solid #5e8792;
 	border-left: none;
 }
 
@@ -40,25 +36,37 @@ body {
 	cursor: pointer;
 }
 
+.titles {
+	border: 2px solid #5e8792;
+	border-left: none;
+	background-color: #0e1b20;
+	padding: 20px 0 20px 40px;
+}
+
 h2 {
 	font-family: 'Righteous', cursive;
-	color: #5e8792;
+	color: #90b6c0;
+	margin: 5px 0;
+}
+
+span {
+	font-size: 0.8em;
+	font-style: italic;
 }
 
 input {
+	margin: 10px 0;
 	padding: 5px;
 }
 
-.menu-info {
-	height: 100%;
-	padding-left: 40px;
-}
-
 .places-list {
+	background-color: rgba(29, 37, 41, 0.95);
 	list-style-type: none;
-	height: 80%;
+	height: 75%;
 	overflow: auto;
+	margin: 0;
 	padding: 0;
+	padding-left: 40px;
 	font-size: 0.8em;
 }
 
