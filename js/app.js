@@ -192,6 +192,9 @@ function initMap() {
 		fetch(`https://api.foursquare.com/v2/venues/search?v=20170801&near=felixstowe&radius=1000&limit=50&categoryId=4d4b7105d754a06374d81259&client_id=TN0JTVIT305N1K511XICDKXC5FEIGGX50SVSUUH0UM3ECCKK&client_secret=FUHNDVNZHHHHDUPFYCQ43GQEIOQUG2QBGENDB1L2QRKD1UET`)
 		.then(response => response.json())
 		.then(createMarkers)
+		
+		// Catch any errors
+		.catch(e => requestError(e, 'food venues'));
 	}()
 }
 
@@ -251,6 +254,9 @@ const selectMarker = function(marker) {
 			infowindow.open(map, marker);
 		})
 		
+		// Catch any errors
+		.catch(e => requestError(e, 'venue details'));
+		
 		// Make sure the marker property is cleared if the infowindow is closed.
 		infowindow.addListener('closeclick', function() {
 			marker.icon = getMarkerIcon('c56565');
@@ -258,6 +264,12 @@ const selectMarker = function(marker) {
 			infowindow.marker = null;
 		});
 	}
+}
+
+// Function to run when there is an error retrieving data from the API
+const requestError = function(e, item) {
+	console.log(e);
+	window.alert(`Sorry there was an error retrieving the ${item} from Foursquare`);
 }
 
 // ViewModel
