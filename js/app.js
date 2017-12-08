@@ -155,6 +155,7 @@ function initMap() {
 	infowindow = new google.maps.InfoWindow();
 	
 	// Creates markers from results of the nearbysearch
+	// This function is a slightly modified version of a function from Udacity's course on the Google Maps API
 	const createMarkers = function(data) {
 		let results = data.response.venues;
 		
@@ -199,6 +200,7 @@ function initMap() {
 }
 
 // Function accepts a color in hex format and generates a custom marker of that colour
+// This function is a slightly modified version of a function from Udacity's course on the Google Maps API
 const getMarkerIcon = function(colour) {
 	let icon = {
 		url: `http://chart.googleapis.com/chart?chst=d_map_spin&chld=1.15|0|${colour}|40|_|%E2%80%A2`,
@@ -267,6 +269,7 @@ const selectMarker = function(marker) {
 }
 
 // Function to run when there is an error retrieving data from the API
+// This function is a slightly modified version of a function of the same name from Udacity's course on AJAX
 const requestError = function(e, item) {
 	console.log(e);
 	window.alert(`Sorry there was an error retrieving the ${item} from Foursquare`);
