@@ -31,7 +31,7 @@ body {
 	padding: 0 5px;
 	border: 2px solid #938b89;
 	border-left: none;
-	box-shadow: 2px 2px 10px 2px grey;
+	box-shadow: 4px 5px 6px 0px grey;
 }
 
 .menu-icon:hover {
