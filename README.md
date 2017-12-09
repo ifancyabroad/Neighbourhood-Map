@@ -1,7 +1,7 @@
 # Felixstowe Food
 ## About
 ### Description
-This is an app showing a **map of my local neighbourhood** with markers to display all the **food venues** within a thousand metres from the centre. Information on each venue is displayed in the form of an infowindow when the marker is selected, from here the user can see the **name, address and any available photos** of the venue. Venues can all be **filtered** from the search box in the UI.
+This is an app showing a **map of my local neighbourhood** with markers to display all the **food venues** within a thousand metres of the centre. Information on each venue is displayed in the form of an infowindow when the marker is selected, from here the user can see the **name, address and any available photos** of the venue. Venues can all be **filtered** from the search box in the UI.
 
 ### Origins
 The app was created as part of the _Udacity_ Front-End Nanodegree course. It was created from scratch using the _Google Maps_ API and collecting data from the _Foursquare_ API. Any functions that originated from other sources have been credited in the comments of `app.js`.
