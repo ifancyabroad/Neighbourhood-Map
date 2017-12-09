@@ -19,7 +19,7 @@
 			<div class="titles">
 				<h2>Felixstowe Food</h2>
 				<span>All data retrieved from Foursquare</span>
-				<input data-bind="textInput: searchInput" type="search" placeholder="Search..."></input>
+				<input data-bind="textInput: searchInput" type="search" placeholder="Search...">
 			</div>
 			<ul data-bind="foreach: markers" class="places-list">
 				<li data-bind="text: title, click: selectMarker, style: { display: display() ? 'block' : 'none' }"></li>
