@@ -268,6 +268,11 @@ const selectMarker = function(marker) {
 	}
 }
 
+// Alerts the user if the map fails to load
+const mapError = function() {
+	window.alert(`Sorry there was an error retrieving the map from Google Maps`);
+}
+
 // Function to run when there is an error retrieving data from the API
 // This function is a slightly modified version of a function of the same name from Udacity's course on AJAX
 const requestError = function(e, item) {
